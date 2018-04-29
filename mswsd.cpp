@@ -1,6 +1,6 @@
 #include<bits/stdc++.h>
 using namespace std;
-//makenum salah
+
 //belum buka
 
 pair< vector<vector<int> >, vector<vector<bool> > > init(int besar)
@@ -25,13 +25,19 @@ pair< vector<vector<int> >, vector<vector<bool> > > init(int besar)
     return make_pair(layerBack,layerFront);
 }
 
-void Display(vector<vector<int> > temp)
+void Display(vector<vector<int> > temp,vector<vector<bool> > depan)
 {
     for(int i=0;i<temp.size();i++){
         for(int j=0;j<temp[i].size();j++){
-            if(temp[i][j]==-1) cout<<"B ";
-            else if(temp[i][j]==0) cout<<"  ";
-            else cout << temp[i][j] << " ";
+            if(depan[i][j]==true)
+                cout<<"X ";
+            else{
+                if(temp[i][j]==-1)
+                    cout<<"B ";
+                else if(temp[i][j]==0)
+                    cout<<"  ";
+                else cout << temp[i][j] << " ";
+            }
         }
         cout<<endl;
     }
@@ -57,16 +63,24 @@ void makenum(vector<vector<int> > &layer)
         for(int j=0;j<layer[i].size();j++){
             if(layer[i][j]==-1){
                 if(i-1>=0){
-                    if(j-1>=0&&layer[i-1][j-1]>-1)layer[i-1][j-1]++;
-                    if(layer[i-1][j]>-1)layer[i-1][j]++;
-                    if(j+1<layer[i].size()&&layer[i-1][j+1]>-1) layer[i-1][j+1]++;
+                    if(j-1>=0&&layer[i-1][j-1]>-1)
+                        layer[i-1][j-1]++;
+                    if(layer[i-1][j]>-1)
+                        layer[i-1][j]++;
+                    if(j+1<layer[i].size()&&layer[i-1][j+1]>-1)
+                        layer[i-1][j+1]++;
                 }
-                if(j-1>=0&&layer[i][j-1]>-1)layer[i][j-1]++;
-                if(j+1<layer[i].size()&&layer[i][j+1]>-1)layer[i][j+1]++;
+                if(j-1>=0&&layer[i][j-1]>-1)
+                    layer[i][j-1]++;
+                if(j+1<layer[i].size()&&layer[i][j+1]>-1)
+                    layer[i][j+1]++;
                 if(i+1<layer.size()){
-                    if(j-1>=0&&layer[i+1][j-1]>-1)layer[i+1][j-1]++;
-                    if(layer[i+1][j]>-1)layer[i+1][j]++;
-                    if(j+1<layer[i].size()&&layer[i+1][j+1]>-1)layer[i+1][j+1]++;
+                    if(j-1>=0&&layer[i+1][j-1]>-1)
+                        layer[i+1][j-1]++;
+                    if(layer[i+1][j]>-1)
+                        layer[i+1][j]++;
+                    if(j+1<layer[i].size()&&layer[i+1][j+1]>-1)
+                        layer[i+1][j+1]++;
                 }
             }
         }
@@ -84,5 +98,5 @@ int main()
 
     makebomb(27,layerBack);
     makenum(layerBack);
-    Display(layerBack);
+    Display(layerBack,layerFront);
 }
