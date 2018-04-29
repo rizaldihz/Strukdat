@@ -57,16 +57,16 @@ void makenum(vector<vector<int> > &layer)
         for(int j=0;j<layer[i].size();j++){
             if(layer[i][j]==-1){
                 if(i-1>=0){
-                    if(j-1>=0)layer[i-1][j-1]++;
-                    layer[i-1][j]++;
-                    if(j+1<layer[i].size()) layer[i-1][j+1]++;
+                    if(j-1>=0&&layer[i-1][j-1]>-1)layer[i-1][j-1]++;
+                    if(layer[i-1][j]>-1)layer[i-1][j]++;
+                    if(j+1<layer[i].size()&&layer[i-1][j+1]>-1) layer[i-1][j+1]++;
                 }
-                if(j-1>=0)layer[i][j-1]++;
-                if(j+1<layer[i].size())layer[i][j+1]++;
+                if(j-1>=0&&layer[i][j-1]>-1)layer[i][j-1]++;
+                if(j+1<layer[i].size()&&layer[i][j+1]>-1)layer[i][j+1]++;
                 if(i+1<layer.size()){
-                    if(j-1>=0)layer[i+1][j-1]++;
-                    layer[i+1][j]++;
-                    if(j+1<layer[i].size())layer[i+1][j+1]++;
+                    if(j-1>=0&&layer[i+1][j-1]>-1)layer[i+1][j-1]++;
+                    if(layer[i+1][j]>-1)layer[i+1][j]++;
+                    if(j+1<layer[i].size()&&layer[i+1][j+1]>-1)layer[i+1][j+1]++;
                 }
             }
         }
@@ -82,7 +82,7 @@ int main()
     vector<vector<int> > layerBack=res.first;
     vector<vector<bool> > layerFront=res.second;
 
-    makebomb(256,layerBack);
+    makebomb(27,layerBack);
     makenum(layerBack);
     Display(layerBack);
 }
