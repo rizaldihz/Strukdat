@@ -1,5 +1,7 @@
 #include<bits/stdc++.h>
 using namespace std;
+//makenum salah
+//belum buka
 
 pair< vector<vector<int> >, vector<vector<bool> > > init(int besar)
 {
